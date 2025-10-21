@@ -1,86 +1,155 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { COMPANY_INFO, COMPANY_VALUES } from "@/const";
-import { Building2, Users, Target, Award } from "lucide-react";
+import { ArrowRight, Award, Users, Target, Lightbulb } from "lucide-react";
+import { Link } from "wouter";
 
 export default function About() {
+  const values = [
+    {
+      icon: <Award className="w-8 h-8" />,
+      title: "الاحترافية",
+      description: "نلتزم بالمعايير المهنية العالية في كل ما نقوم به",
+    },
+    {
+      icon: <Target className="w-8 h-8" />,
+      title: "الشفافية",
+      description: "نعمل بنزاهة ووضوح تام في جميع تعاملاتنا",
+    },
+    {
+      icon: <Lightbulb className="w-8 h-8" />,
+      title: "الابتكار",
+      description: "نبحث باستمرار عن حلول جديدة ومبدعة",
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: "الالتزام",
+      description: "نحترم الوقت والميزانية والتوقعات",
+    },
+    {
+      icon: <Award className="w-8 h-8" />,
+      title: "الدقة",
+      description: "نولي اهتمامًا عاليًا لكل عنصر تصميم",
+    },
+    {
+      icon: <Lightbulb className="w-8 h-8" />,
+      title: "الاستدامة",
+      description: "نلتزم بمعايير التصميم المستدام والصديق للبيئة",
+    },
+  ];
+
+  const whyChooseUs = [
+    {
+      number: "01",
+      title: "فريق متخصص",
+      description: "مهندسون واستشاريون ذوو خبرات عميقة في مختلف المجالات الهندسية",
+    },
+    {
+      number: "02",
+      title: "معايير عالية",
+      description: "نلتزم بأعلى معايير الجودة والاحترافية في كل مشروع",
+    },
+    {
+      number: "03",
+      title: "حلول متكاملة",
+      description: "نقدم حلولاً هندسية شاملة من التصميم إلى الإشراف",
+    },
+    {
+      number: "04",
+      title: "التزام بالمواعيد",
+      description: "نضمن تسليم المشاريع في الوقت المحدد بالجودة المطلوبة",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-16">
+        <section className="relative overflow-hidden pt-20 pb-16 sm:pt-32 sm:pb-20 bg-gradient-to-br from-primary/10 to-accent/5">
           <div className="container">
-            <h1 className="text-4xl md:text-5xl font-bold">من نحن</h1>
-            <p className="text-xl text-gray-300 mt-4">
+            <h1 className="heading-modern text-primary mb-4">من نحن</h1>
+            <p className="text-xl text-foreground/70 max-w-2xl">
               تعرف على شركة درر النفائس للاستشارات الهندسية
             </p>
           </div>
         </section>
 
-        {/* Company Overview */}
-        <section className="py-20">
+        {/* About Section */}
+        <section className="section-modern">
           <div className="container">
-            <div className="max-w-4xl">
-              <h2 className="text-4xl font-bold text-gray-900 mb-8">
-                {COMPANY_INFO.name}
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                {COMPANY_INFO.description}
-              </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                نمتلك فريقًا مؤهلاً بخبرات طويلة في مختلف التخصصات الهندسية، ونلتزم بأحدث معايير التصميم والاستدامة، لنكون الشريك المثالي للعملاء الباحثين عن الجودة والدقة والموثوقية.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Vision & Mission */}
-        <section className="py-20 bg-gray-50">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="bg-white p-12 rounded-lg border border-gray-200">
-                <div className="flex items-center gap-4 mb-6">
-                  <Target className="w-10 h-10 text-gray-900" />
-                  <h3 className="text-2xl font-bold text-gray-900">رؤيتنا</h3>
-                </div>
-                <p className="text-gray-600 leading-relaxed">
-                  {COMPANY_INFO.vision}
-                </p>
-              </div>
-
-              <div className="bg-white p-12 rounded-lg border border-gray-200">
-                <div className="flex items-center gap-4 mb-6">
-                  <Award className="w-10 h-10 text-gray-900" />
-                  <h3 className="text-2xl font-bold text-gray-900">رسالتنا</h3>
-                </div>
-                <p className="text-gray-600 leading-relaxed">
-                  {COMPANY_INFO.mission}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Values */}
-        <section className="py-20">
-          <div className="container">
-            <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">
-              قيمنا الأساسية
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-              {COMPANY_VALUES.map((value, index) => (
-                <div
-                  key={index}
-                  className="bg-gray-50 p-8 rounded-lg text-center hover:shadow-lg transition"
-                >
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    {value.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {value.description}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-3xl font-bold text-primary mb-4">
+                    درر النفائس للاستشارات الهندسية
+                  </h2>
+                  <p className="text-lg text-foreground/70 leading-relaxed">
+                    شركة هندسية سعودية معتمدة، متخصصة في تقديم حلول تصميم واستشارات هندسية شاملة ومتطورة.
                   </p>
+                </div>
+
+                <p className="text-foreground/70 leading-relaxed">
+                  نمتلك فريقًا مؤهلاً بخبرات طويلة في مختلف التخصصات الهندسية، ونلتزم بأحدث معايير التصميم والاستدامة، لنكون الشريك المثالي للعملاء الباحثين عن الجودة والدقة والموثوقية.
+                </p>
+
+                <div className="space-y-4 pt-4">
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 text-primary">
+                      <Target className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-primary mb-1">رؤيتنا</h3>
+                      <p className="text-foreground/70">
+                        أن نكون من الرواد في مجال الاستشارات الهندسية في المملكة العربية السعودية
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="flex-shrink-0 text-primary">
+                      <Lightbulb className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-primary mb-1">رسالتنا</h3>
+                      <p className="text-foreground/70">
+                        نصنع الفارق عبر تقديم خدمات هندسية متقدمة وحلول مبتكرة
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-3xl" />
+                <img
+                  src="/hero-building.jpg"
+                  alt="مبنى معماري عصري"
+                  className="relative rounded-2xl shadow-2xl w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Values Section */}
+        <section className="section-modern bg-gradient-to-br from-primary/5 to-accent/5">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="heading-modern text-primary mb-4">قيمنا الأساسية</h2>
+              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+                نبني عملنا على أساس قيم راسخة تعكس التزامنا تجاه عملائنا
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {values.map((value, index) => (
+                <div key={index} className="card-modern p-8 text-center">
+                  <div className="flex justify-center mb-4 text-primary">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-primary mb-3">{value.title}</h3>
+                  <p className="text-foreground/70">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -88,83 +157,68 @@ export default function About() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-20 bg-gray-50">
+        <section className="section-modern">
           <div className="container">
-            <h2 className="text-4xl font-bold text-gray-900 mb-16 text-center">
-              لماذا تختار درر النفائس؟
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="flex gap-6">
-                <div className="flex-shrink-0">
-                  <Users className="w-12 h-12 text-gray-900" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    فريق متخصص
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    فريق من المهندسين والاستشاريين ذوي الخبرات العميقة في مختلف المجالات الهندسية
-                  </p>
-                </div>
-              </div>
+            <div className="text-center mb-16">
+              <h2 className="heading-modern text-primary mb-4">لماذا تختار درر النفائس؟</h2>
+              <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+                نقدم مزايا تنافسية تجعلنا الخيار الأفضل لمشاريعك
+              </p>
+            </div>
 
-              <div className="flex gap-6">
-                <div className="flex-shrink-0">
-                  <Award className="w-12 h-12 text-gray-900" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {whyChooseUs.map((item, index) => (
+                <div key={index} className="card-modern p-8">
+                  <div className="text-5xl font-bold text-primary/20 mb-4">
+                    {item.number}
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary mb-3">{item.title}</h3>
+                  <p className="text-foreground/70 leading-relaxed">{item.description}</p>
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    معايير عالية
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    نلتزم بأعلى معايير الجودة والاحترافية في كل مشروع نقوم به
-                  </p>
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <div className="flex gap-6">
-                <div className="flex-shrink-0">
-                  <Building2 className="w-12 h-12 text-gray-900" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    حلول متكاملة
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    نقدم حلولاً هندسية شاملة من التصميم إلى الإشراف على التنفيذ
-                  </p>
-                </div>
+        {/* Statistics */}
+        <section className="section-modern bg-gradient-to-r from-primary to-primary/80 text-white">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-5xl font-bold mb-2">50+</div>
+                <p className="text-white/90">مشروع منفذ</p>
               </div>
-
-              <div className="flex gap-6">
-                <div className="flex-shrink-0">
-                  <Target className="w-12 h-12 text-gray-900" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    التزام بالمواعيد
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    نضمن تسليم المشاريع في الوقت المحدد وبالجودة المطلوبة
-                  </p>
-                </div>
+              <div>
+                <div className="text-5xl font-bold mb-2">100+</div>
+                <p className="text-white/90">عميل راضي</p>
+              </div>
+              <div>
+                <div className="text-5xl font-bold mb-2">15+</div>
+                <p className="text-white/90">سنة خبرة</p>
+              </div>
+              <div>
+                <div className="text-5xl font-bold mb-2">20+</div>
+                <p className="text-white/90">متخصص</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gray-900 text-white text-center">
-          <div className="container">
-            <h2 className="text-4xl font-bold mb-6">
+        <section className="section-modern">
+          <div className="container text-center">
+            <h2 className="heading-modern text-primary mb-6">
               هل تريد العمل معنا؟
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-foreground/70 mb-8 max-w-2xl mx-auto">
               تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
             </p>
-            <button className="bg-white text-gray-900 px-8 py-3 rounded font-bold hover:bg-gray-100 transition">
-              تواصل معنا
-            </button>
+            <Link href="/contact">
+              <button className="btn-modern bg-primary text-primary-foreground hover:bg-primary/90">
+                تواصل معنا
+                <ArrowRight className="inline-block ml-2 w-5 h-5" />
+              </button>
+            </Link>
           </div>
         </section>
       </main>
@@ -173,4 +227,3 @@ export default function About() {
     </div>
   );
 }
-
