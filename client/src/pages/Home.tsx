@@ -1,9 +1,18 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowRight, Zap, Award, Users, Target } from "lucide-react";
+import { ArrowRight, Zap, Award, Users, Target, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const services = [
     {
       icon: "🏗️",
@@ -60,26 +69,39 @@ export default function Home() {
     },
   ];
 
+  const benefits = [
+    "فريق متخصص وذو خبرة عالية",
+    "تقنيات حديثة وأدوات متطورة",
+    "التزام بالجودة والدقة",
+    "دعم شامل بعد المشروع",
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-background overflow-hidden">
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section - عصري جريء */}
+        {/* Hero Section - مع Parallax Effect */}
         <section className="relative overflow-hidden pt-20 pb-32 sm:pt-40 sm:pb-48">
-          {/* خلفيات متعددة الطبقات */}
+          {/* خلفيات متعددة الطبقات مع Parallax */}
           <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+            <div
+              className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl transition-transform duration-300"
+              style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+            />
+            <div
+              className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl transition-transform duration-300"
+              style={{ transform: `translateY(${scrollY * -0.3}px)` }}
+            />
             <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
           </div>
-          
+
           <div className="container relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8 animate-slide-in-up">
                 <div className="space-y-4">
                   <div className="inline-block">
-                    <span className="px-5 py-3 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 text-primary font-bold text-sm border border-primary/30">
+                    <span className="px-5 py-3 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 text-primary font-bold text-sm border border-primary/30 hover:border-primary/60 transition-colors">
                       ✨ حلول هندسية عصرية
                     </span>
                   </div>
@@ -93,13 +115,13 @@ export default function Home() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Link href="/contact">
-                    <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl w-full sm:w-auto">
+                    <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl hover:scale-105 w-full sm:w-auto transition-all duration-300">
                       احصل على استشارة
                       <ArrowRight className="inline-block ml-2 w-5 h-5" />
                     </button>
                   </Link>
                   <Link href="/services">
-                    <button className="btn-modern border-2 border-primary text-primary hover:bg-primary/5 w-full sm:w-auto font-bold">
+                    <button className="btn-modern border-2 border-primary text-primary hover:bg-primary/5 w-full sm:w-auto font-bold transition-all duration-300">
                       اعرف الخدمات
                     </button>
                   </Link>
@@ -107,35 +129,35 @@ export default function Home() {
 
                 {/* إحصائيات سريعة */}
                 <div className="grid grid-cols-3 gap-4 pt-8 border-t border-border">
-                  <div className="text-center">
+                  <div className="text-center group hover:scale-110 transition-transform duration-300">
                     <div className="text-3xl font-black text-gradient">50+</div>
                     <p className="text-sm text-foreground/60 font-medium">مشروع منفذ</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center group hover:scale-110 transition-transform duration-300">
                     <div className="text-3xl font-black text-gradient">15+</div>
                     <p className="text-sm text-foreground/60 font-medium">سنة خبرة</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center group hover:scale-110 transition-transform duration-300">
                     <div className="text-3xl font-black text-gradient">100+</div>
                     <p className="text-sm text-foreground/60 font-medium">عميل راضي</p>
                   </div>
                 </div>
               </div>
 
-              {/* الصورة */}
-              <div className="relative animate-slide-in-down">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl blur-2xl" />
+              {/* الصورة مع Hover Effect */}
+              <div className="relative animate-slide-in-down group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-300" />
                 <img
                   src="/interior-design.jpg"
                   alt="تصميم داخلي عصري"
-                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-2 border-primary/20"
+                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-2 border-primary/20 group-hover:border-primary/50 transition-all duration-300 group-hover:scale-105"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Services Grid - عصري جريء */}
+        {/* Services Grid */}
         <section className="section-modern bg-gradient-to-b from-transparent via-primary/5 to-transparent">
           <div className="container">
             <div className="text-center mb-20">
@@ -170,22 +192,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About Section - عصري */}
+        {/* Benefits Section */}
         <section className="section-modern bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10">
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div>
-                  <h2 className="heading-modern text-primary mb-4">من نحن؟</h2>
+                  <h2 className="heading-modern text-primary mb-4">لماذا تختارنا؟</h2>
                   <div className="divider-accent w-20 h-1 mb-6" />
-                  <p className="text-lg text-foreground/70 leading-relaxed font-medium">
-                    شركة هندسية سعودية معتمدة، متخصصة في تقديم حلول تصميم واستشارات هندسية شاملة ومتطورة.
-                  </p>
                 </div>
 
-                <p className="text-foreground/70 leading-relaxed font-medium">
-                  نمتلك فريقًا مؤهلاً بخبرات طويلة في مختلف التخصصات الهندسية، ونلتزم بأحدث معايير التصميم والاستدامة.
-                </p>
+                <div className="space-y-4">
+                  {benefits.map((benefit, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-primary/5 transition-colors duration-300"
+                      style={{
+                        animation: `slideInUp 0.6s ease-out ${index * 0.1}s both`,
+                      }}
+                    >
+                      <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                      <p className="text-lg text-foreground/70 font-medium">{benefit}</p>
+                    </div>
+                  ))}
+                </div>
 
                 <Link href="/about">
                   <button className="btn-modern bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-2xl">
@@ -217,7 +247,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA Section - جريء */}
+        {/* CTA Section */}
         <section className="section-modern bg-gradient-to-r from-primary via-primary/90 to-accent text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
@@ -231,7 +261,7 @@ export default function Home() {
               تواصل معنا اليوم واحصل على استشارة مجانية من فريقنا المتخصص
             </p>
             <Link href="/contact">
-              <button className="btn-modern bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black">
+              <button className="btn-modern bg-white text-primary hover:bg-white/90 hover:shadow-2xl font-black hover:scale-105 transition-all duration-300">
                 تواصل معنا الآن
                 <ArrowRight className="inline-block ml-2 w-5 h-5" />
               </button>

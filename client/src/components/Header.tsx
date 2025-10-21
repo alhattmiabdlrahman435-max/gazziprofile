@@ -1,81 +1,156 @@
 import { NAV_MENU, APP_TITLE, CONTACT_PHONE, CONTACT_EMAIL } from "@/const";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleDarkMode = () => setIsDark(!isDark);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
-      {/* Top Bar */}
-      <div className="bg-gray-900 text-white py-2 px-4 text-sm">
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
+          : "bg-background border-b border-border/50"
+      }`}
+    >
+      {/* Top Bar - معلومات التواصل */}
+      <div className="bg-gradient-to-r from-primary/10 to-accent/10 text-foreground py-3 px-4 text-sm border-b border-border/50">
         <div className="container flex justify-between items-center">
-          <div className="flex gap-4">
-            <a href={`tel:${CONTACT_PHONE}`} className="hover:text-gray-300">
+          <div className="flex gap-6">
+            <a
+              href={`tel:${CONTACT_PHONE}`}
+              className="hover:text-primary transition-colors font-medium flex items-center gap-2"
+            >
+              <span>📞</span>
               {CONTACT_PHONE}
             </a>
-            <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-gray-300">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="hover:text-primary transition-colors font-medium flex items-center gap-2"
+            >
+              <span>✉️</span>
               {CONTACT_EMAIL}
             </a>
           </div>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-gray-300">Facebook</a>
-            <a href="#" className="hover:text-gray-300">Twitter</a>
-            <a href="#" className="hover:text-gray-300">Instagram</a>
+          <div className="hidden sm:flex gap-4">
+            <a href="#" className="hover:text-primary transition-colors">
+              Facebook
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Twitter
+            </a>
+            <a href="#" className="hover:text-primary transition-colors">
+              Instagram
+            </a>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
       <nav className="container py-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-gray-900">
-          {APP_TITLE}
+        <Link href="/">
+          <a className="text-2xl font-black text-primary hover:text-primary/80 transition-colors flex items-center gap-2">
+            <span className="text-3xl">🏗️</span>
+            <span className="hidden sm:inline">{APP_TITLE}</span>
+          </a>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden lg:flex gap-8 items-center">
           {NAV_MENU.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-gray-700 hover:text-gray-900 font-medium transition"
-            >
-              {item.label}
+            <Link key={item.href} href={item.href}>
+              <a className="font-bold text-foreground hover:text-primary transition-colors relative group">
+                {item.label}
+                <span className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
+              </a>
             </Link>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <button className="hidden md:block bg-gray-900 text-white px-6 py-2 rounded hover:bg-gray-800 transition">
-          احصل على استشارة
-        </button>
+        {/* Right Side Actions */}
+        <div className="flex items-center gap-4">
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110"
+            aria-label="تبديل الوضع المظلم"
+            title={isDark ? "الوضع الفاتح" : "الوضع المظلم"}
+          >
+            {isDark ? (
+              <Sun className="w-5 h-5" />
+            ) : (
+              <Moon className="w-5 h-5" />
+            )}
+          </button>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* CTA Button - Desktop */}
+          <Link href="/contact">
+            <a className="hidden md:block bg-gradient-to-r from-primary to-primary/80 text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition-all duration-300 hover:scale-105">
+              احصل على استشارة
+            </a>
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden p-2 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors text-primary"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="تبديل القائمة"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 py-4">
-          <div className="container flex flex-col gap-4">
+        <div className="lg:hidden bg-background border-t border-border py-4 animate-slide-in-down">
+          <div className="container flex flex-col gap-3">
             {NAV_MENU.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-gray-700 hover:text-gray-900 font-medium"
-              >
-                {item.label}
+              <Link key={item.href} href={item.href}>
+                <a
+                  onClick={() => setIsMenuOpen(false)}
+                  className="px-4 py-3 rounded-lg font-bold text-foreground hover:bg-primary/10 hover:text-primary transition-all"
+                >
+                  {item.label}
+                </a>
               </Link>
             ))}
-            <button className="bg-gray-900 text-white px-6 py-2 rounded hover:bg-gray-800 transition w-full">
-              احصل على استشارة
-            </button>
+            <Link href="/contact">
+              <a
+                onClick={() => setIsMenuOpen(false)}
+                className="bg-gradient-to-r from-primary to-primary/80 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition-all w-full text-center"
+              >
+                احصل على استشارة
+              </a>
+            </Link>
           </div>
         </div>
       )}
