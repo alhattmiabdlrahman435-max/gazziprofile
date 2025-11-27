@@ -1,10 +1,10 @@
 export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 
-export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "مكتب غازي محمد عباس للاستشارات الهندسية";
+export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "شركة غازي محمد عباس للاستشارات الهندسية";
 
 export const APP_LOGO =
   import.meta.env.VITE_APP_LOGO ||
-  "/logo.webp";
+  "/logo.png";
 
 // Contact Information
 export const CONTACT_PHONE = "0555720166";
@@ -152,4 +152,3 @@ export const getLoginUrl = () => {
 
   return url.toString();
 };
-

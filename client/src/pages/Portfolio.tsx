@@ -14,7 +14,7 @@ export default function Portfolio() {
       category: "residential",
       title: "مشروع سكني حديث",
       description: "مجمع سكني متكامل بتصاميم عصرية",
-      image: "/hero-building.jpg",
+      image: "/photoApp/construction-site-sunset.jpg",
       year: "2023",
     },
     {
@@ -22,7 +22,7 @@ export default function Portfolio() {
       category: "commercial",
       title: "مركز تجاري",
       description: "مركز تجاري بمساحة 50,000 متر مربع",
-      image: "/interior-design.jpg",
+      image: "/photoApp/illustration-construction-site.jpg",
       year: "2023",
     },
     {
@@ -30,7 +30,7 @@ export default function Portfolio() {
       category: "residential",
       title: "فيلا فاخرة",
       description: "تصميم داخلي فاخر وحديث",
-      image: "/architectural-plan.jpg",
+      image: "/photoApp/beautiful-view-construction-site-city-sunset.jpg",
       year: "2022",
     },
     {
@@ -38,7 +38,7 @@ export default function Portfolio() {
       category: "commercial",
       title: "مكتب شركة",
       description: "تصميم مكتب حديث وذكي",
-      image: "/hero-building.jpg",
+      image: "/photoApp/construction-high-rise-building-sunset.jpg",
       year: "2022",
     },
     {
@@ -46,7 +46,7 @@ export default function Portfolio() {
       category: "industrial",
       title: "مصنع حديث",
       description: "تصميم مصنع بأحدث التقنيات",
-      image: "/interior-design.jpg",
+      image: "/photoApp/heavy-machines-construction-workers-working-building.jpg",
       year: "2023",
     },
     {
@@ -54,7 +54,7 @@ export default function Portfolio() {
       category: "industrial",
       title: "مستودع ذكي",
       description: "مستودع بنظام إدارة ذكي",
-      image: "/architectural-plan.jpg",
+      image: "/photoApp/scene-construction-site-with-equipment.jpg",
       year: "2022",
     },
   ];

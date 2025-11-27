@@ -1,38 +1,55 @@
+/* =========================
+   1) Imports & Tailwind base
+   ========================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* دعم الثيم الداكن بطريقة أنيقة مع Tailwind v4 */
 @custom-variant dark (&:is(.dark *));
 
+/* ربط ألوان Tailwind بمتغيرات CSS */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -43,97 +60,127 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* =========================
+   2) Root Theme (Light / Dark)
+   ========================= */
+
 :root {
   --radius: 16px;
-  
-  /* الألوان الأساسية - أزرق غامق من شعار GEC الجديد */
-  --primary: #1a237e;
-  --primary-foreground: oklch(1 0 0);
-  
-  /* الخلفيات */
-  --background: oklch(0.98 0.001 260);
-  --foreground: oklch(0.15 0.03 260);
-  
-  /* البطاقات */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.03 260);
-  
-  /* الـ Popover */
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.03 260);
-  
-  /* الألوان الثانوية */
-  --secondary: oklch(0.12 0.12 260);
-  --secondary-foreground: oklch(1 0 0);
-  
-  /* الألوان المخففة */
-  --muted: oklch(0.92 0.001 0);
-  --muted-foreground: oklch(0.45 0.08 260);
-  
-  /* الألوان البارزة - أزرق فاتح من الشعار */
-  --accent: #7986cb;
-  --accent-foreground: oklch(1 0 0);
-  
-  /* الألوان الخطرة */
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0 0);
-  
-  /* الحدود والمدخلات */
-  --border: oklch(0.92 0.004 260);
-  --input: oklch(0.95 0.001 260);
-  --ring: oklch(0.32 0.18 260);
-  
-  /* الـ Sidebar */
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.15 0.03 260);
-  --sidebar-primary: oklch(0.32 0.18 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.92 0.001 0);
-  --sidebar-accent-foreground: oklch(0.15 0.03 260);
-  --sidebar-border: oklch(0.92 0.004 260);
-  --sidebar-ring: oklch(0.32 0.18 260);
-  
-  /* الرسوم البيانية */
-  --chart-1: oklch(0.32 0.18 260);
-  --chart-2: oklch(0.68 0.22 35);
-  --chart-3: oklch(0.45 0.15 200);
-  --chart-4: oklch(0.55 0.15 320);
-  --chart-5: oklch(0.35 0.15 280);
+  --contact-field-height: 64px;
+  --contact-field-radius: 22px;
+  --contact-field-icon-size: 48px;
+
+  /* لوحة ألوان مستوحاة من الشعار */
+  --primary: #2f45ff;
+  --primary-foreground: #ffffff;
+
+  --background: #f5f7ff;
+  --foreground: #0b1030;
+
+  --card: #ffffff;
+  --card-foreground: #11153b;
+
+  --popover: #ffffff;
+  --popover-foreground: #11153b;
+
+  --secondary: #e3e8ff;
+  --secondary-foreground: #0b1030;
+
+  --muted: #eef1ff;
+  --muted-foreground: #4b5485;
+
+  --accent: #4d63ff;
+  --accent-foreground: #ffffff;
+
+  --destructive: #ff4f6b;
+  --destructive-foreground: #ffffff;
+
+  --border: #d0d6ff;
+  --input: #dce1ff;
+  --ring: #2f45ff;
+
+  --sidebar: #f0f3ff;
+  --sidebar-foreground: #0b1030;
+  --sidebar-primary: #2f45ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e3e8ff;
+  --sidebar-accent-foreground: #0b1030;
+  --sidebar-border: #d0d6ff;
+  --sidebar-ring: #4d63ff;
+
+  --chart-1: #2f45ff;
+  --chart-2: #4d63ff;
+  --chart-3: #6b7cff;
+  --chart-4: #1d2c8f;
+  --chart-5: #182671;
 }
 
 .dark {
-  --primary: oklch(0.55 0.2 260);
-  --primary-foreground: oklch(0.98 0 0);
-  --background: oklch(0.1 0.01 260);
-  --foreground: oklch(0.95 0.01 260);
-  --card: oklch(0.16 0.01 260);
-  --card-foreground: oklch(0.95 0.01 260);
-  --popover: oklch(0.16 0.01 260);
-  --popover-foreground: oklch(0.95 0.01 260);
-  --secondary: oklch(0.45 0.12 260);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.22 0.01 260);
-  --muted-foreground: oklch(0.68 0.08 260);  --accent: #a5b4fc;
-  --accent-foreground: oklch(0.1 0.01 260);
-  --border: oklch(0.22 0.01 260);
-  --input: oklch(0.18 0.01 260);
-  --ring: oklch(0.55 0.2 260);
+  --primary: #5970ff;
+  --primary-foreground: #ffffff;
+  --contact-field-height: 62px;
+  --contact-field-radius: 22px;
+  --contact-field-icon-size: 46px;
+
+  --background: #05070f;
+  --foreground: #f7f9ff;
+
+  --card: #0c1225;
+  --card-foreground: #f4f6ff;
+
+  --popover: #0c1225;
+  --popover-foreground: #f4f6ff;
+
+  --secondary: #111a33;
+  --secondary-foreground: #dfe4ff;
+
+  --muted: #131b31;
+  --muted-foreground: #96a2d4;
+
+  --accent: #5970ff;
+  --accent-foreground: #ffffff;
+
+  --border: #1a2544;
+  --input: #1a2544;
+  --ring: #5970ff;
+
+  --sidebar: #090f1f;
+  --sidebar-foreground: #f4f6ff;
+  --sidebar-primary: #4d63ff;
+  --sidebar-primary-foreground: #05070f;
+  --sidebar-accent: #111a33;
+  --sidebar-accent-foreground: #f4f6ff;
+  --sidebar-border: #1a2544;
+  --sidebar-ring: #5970ff;
+
+  --chart-1: #4d63ff;
+  --chart-2: #6b7cff;
+  --chart-3: #2f45ff;
+  --chart-4: #8593ff;
+  --chart-5: #1a2a8f;
 }
+
+/* =========================
+   3) Base Layer
+   ========================= */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     direction: rtl;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     direction: rtl;
     text-align: right;
   }
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -141,24 +188,28 @@
   [type="reset"]:not(:disabled) {
     @apply cursor-pointer;
   }
+
   input,
   button,
   textarea,
   select {
     font-family: inherit;
   }
+
   p {
     @apply leading-7;
   }
+
   a {
     @apply text-primary hover:text-primary/80 transition-colors;
   }
-  
-  /* تحسينات إضافية */
+
+  /* حاوية عامة */
   .container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
-  
+
+  /* زر تخطي إلى المحتوى (لتحسين الوصولية) */
   .skip-link {
     position: absolute;
     top: -200px;
@@ -180,37 +231,387 @@
   }
 }
 
-@layer components {
-  /* بطاقات محسنة مع تأثيرات جريئة */
-  .card-modern {
-    @apply bg-card rounded-2xl border border-border shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1;
+/* =========================
+   4) FlipBook Wrapper (iframe)
+   ========================= */
+
+.flipping-card {
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.flipping-card iframe {
+  border-radius: 24px !important;
+  border: none;
+  box-shadow: none;
+}
+
+/* =========================
+   5) Engineering Flip Cards
+   ========================= */
+
+/* Wrapper يحدد حجم الكارد ويضيف perspective للحركة */
+.eng-card-wrapper {
+  width: 100%;
+  height: 260px;
+  perspective: 1200px;
+}
+
+/* محتوى الكارد (الوجهين) */
+.eng-card-content {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 320ms ease-out;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* قلب الكارد عند hover أو focus-within (للوصولية) */
+.eng-card-wrapper:hover .eng-card-content,
+.eng-card-wrapper:focus-within .eng-card-content {
+  transform: rotateY(180deg);
+}
+
+/* الوجهان */
+.eng-card-front,
+.eng-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background-color: #151515;
+  color: #ffffff;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* الوجه الخلفي (الذي يحتوي على الأنيميشن الدائري والنص) */
+.eng-card-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* شريط متحرك يلف حول الكارد */
+.eng-card-back::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary),
+    var(--primary),
+    transparent
+  );
+  animation: eng-rotation 5s infinite linear;
+}
+
+/* محتوى الوجه الخلفي */
+.eng-card-back-content {
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  border-radius: 20px;
+  background-color: #151515;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* أيقونة داخل الكارد */
+.eng-card-icon {
+  display: inline-flex;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+/* الوجه الأمامي (الصورة + الوصف) */
+.eng-card-front {
+  transform: rotateY(180deg);
+}
+
+/* صورة الخلفية */
+.eng-card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(20%);
+}
+
+/* دوائر مضيئة */
+.eng-card-circle {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary) 0%, #1d2c8f 60%, transparent 100%);
+  filter: blur(16px);
+  animation: eng-floating 2.6s infinite linear;
+}
+
+.eng-card-circle-right {
+  background: radial-gradient(circle, #4d63ff 0%, transparent 100%);
+  width: 60px;
+  height: 60px;
+  right: 45px;
+  top: 25px;
+  animation-delay: -1.2s;
+}
+
+.eng-card-circle-bottom {
+  background: radial-gradient(circle, #2f45ff 0%, #1d2c8f 70%, transparent 100%);
+  width: 170px;
+  height: 170px;
+  bottom: -20px;
+  left: 70px;
+  animation-delay: -0.8s;
+}
+
+/* محتوى الوجه الأمامي */
+.eng-card-front-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* شارة أعلى الكارد */
+.eng-card-badge {
+  background-color: #00000055;
+  padding: 4px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(3px);
+  width: fit-content;
+  font-weight: 600;
+}
+
+/* صندوق الوصف */
+.eng-card-description {
+  box-shadow: 0 0 15px 6px #00000055;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #00000099;
+  backdrop-filter: blur(6px);
+}
+
+/* عنوان الخدمة */
+.eng-card-title {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.eng-card-title p {
+  max-width: 70%;
+}
+
+/* نص أسفل الكارد */
+.eng-card-footer {
+  color: #ffffffbb;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* =========================
+   6) Contact Neon Fields
+   ========================= */
+
+.contact-neon-field {
+  width: 100%;
+  position: relative;
+  border-radius: var(--contact-field-radius);
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background: linear-gradient(175deg, rgba(255, 255, 255, 0.95), rgba(241, 244, 255, 0.85));
+  box-shadow: 0 18px 35px rgba(15, 23, 61, 0.12);
+  transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.contact-neon-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  background: linear-gradient(120deg, rgba(77, 99, 255, 0.5), rgba(146, 130, 255, 0.25)) border-box;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.contact-neon-field:focus-within,
+.contact-neon-field:hover {
+  border-color: rgba(58, 80, 212, 0.45);
+  box-shadow: 0 25px 50px rgba(18, 25, 66, 0.2);
+  transform: translateY(-1px);
+}
+
+.contact-neon-field:focus-within::before {
+  opacity: 0.75;
+}
+
+.contact-neon-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.3rem;
+  min-height: var(--contact-field-height);
+}
+
+.contact-neon-icon {
+  width: var(--contact-field-icon-size);
+  height: var(--contact-field-icon-size);
+  border-radius: calc(var(--contact-field-radius) - 8px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(68, 89, 255, 0.12);
+  color: var(--primary);
+  border: 1px solid rgba(68, 89, 255, 0.35);
+}
+
+.contact-neon-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.contact-neon-control,
+.contact-neon-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: calc(var(--contact-field-height) - 10px);
+  padding: 0.3rem 0;
+  outline: none;
+}
+
+.contact-neon-control::placeholder,
+.contact-neon-textarea::placeholder {
+  color: color-mix(in srgb, var(--foreground) 45%, transparent);
+  font-weight: 500;
+}
+
+.contact-neon-control option {
+  color: #0b1030;
+  background: #ffffff;
+}
+
+.contact-neon-textarea {
+  resize: vertical;
+  min-height: calc(var(--contact-field-height) * 2.4);
+}
+
+.dark .contact-neon-field {
+  border-color: rgba(83, 103, 255, 0.35);
+  background: linear-gradient(170deg, rgba(6, 9, 24, 0.95), rgba(5, 7, 18, 0.9));
+  box-shadow: 0 25px 45px rgba(2, 3, 10, 0.65);
+}
+
+.dark .contact-neon-field::before {
+  background: linear-gradient(120deg, rgba(85, 107, 255, 0.55), rgba(132, 93, 255, 0.25)) border-box;
+}
+
+.dark .contact-neon-icon {
+  background: rgba(85, 106, 255, 0.18);
+  border-color: rgba(85, 106, 255, 0.45);
+  color: var(--primary-foreground);
+}
+
+.dark .contact-neon-control,
+.dark .contact-neon-textarea {
+  color: #f7f9ff;
+}
+
+.dark .contact-neon-control::placeholder,
+.dark .contact-neon-textarea::placeholder {
+  color: rgba(247, 249, 255, 0.5);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --contact-field-height: 58px;
+    --contact-field-icon-size: 44px;
   }
-  
+
+  .dark {
+    --contact-field-height: 56px;
+    --contact-field-icon-size: 40px;
+  }
+
+  .contact-neon-shell {
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* =========================
+   7) Components (Cards / Buttons / Sections / Headings)
+   ========================= */
+
+@layer components {
+  /* بطاقات حديثة */
+  .card-modern {
+    @apply bg-card rounded-2xl border border-border shadow-lg transition-all duration-500 hover:-translate-y-1;
+  }
+
   .card-modern:hover {
     box-shadow: 0 20px 40px rgba(50, 100, 200, 0.15);
   }
-  
-  /* أزرار محسنة */
+
+  /* أزرار حديثة */
   .btn-modern {
     @apply px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:shadow-xl active:scale-95 text-lg;
   }
-  
-  /* أقسام محسنة */
+
+  /* أقسام */
   .section-modern {
     @apply py-20 sm:py-28 lg:py-32;
   }
-  
-  /* عناوين محسنة */
+
+  /* عناوين رئيسية */
   .heading-modern {
     @apply text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight;
   }
-  
-  /* تأثيرات Gradient */
+
+  /* نص متدرج */
   .gradient-text {
     @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
   }
-  
-  /* تأثيرات الحركة */
+
+  /* أنيميشن مخصص */
   @keyframes slideInUp {
     from {
       opacity: 0;
@@ -221,7 +622,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes slideInDown {
     from {
       opacity: 0;
@@ -232,7 +633,7 @@
       transform: translateY(0);
     }
   }
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -241,7 +642,7 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes pulse-glow {
     0%, 100% {
       box-shadow: 0 0 20px rgba(50, 100, 200, 0.3);
@@ -250,42 +651,138 @@
       box-shadow: 0 0 40px rgba(50, 100, 200, 0.6);
     }
   }
-  
+
   .animate-slide-in-up {
     animation: slideInUp 0.6s ease-out;
   }
-  
+
   .animate-slide-in-down {
     animation: slideInDown 0.6s ease-out;
   }
-  
+
   .animate-fade-in {
     animation: fadeIn 0.8s ease-out;
   }
-  
+
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
-  
-  /* تأثيرات النص */
+
   .text-gradient {
     background: linear-gradient(135deg, #3264c8 0%, #ff7a00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
-  /* تأثيرات الـ Hover */
+
   .hover-lift {
     @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
   }
-  
+
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-lg;
   }
-  
-  /* خطوط مزخرفة */
+
   .divider-accent {
     @apply h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full;
+  }
+}
+
+/* =========================
+   8) Utilities (Auras + Radial + Animations)
+   ========================= */
+
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  .aura {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    opacity: 0.22;
+    pointer-events: none;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .aura--primary {
+    top: -18rem;
+    right: -10rem;
+    width: 34rem;
+    height: 34rem;
+    background: rgba(47, 69, 255, 0.35);
+  }
+
+  .aura--accent {
+    top: 32%;
+    left: -12rem;
+    width: 30rem;
+    height: 30rem;
+    background: rgba(73, 93, 255, 0.25);
+  }
+
+  .aura--bottom {
+    bottom: -16rem;
+    right: 25%;
+    width: 32rem;
+    height: 32rem;
+    background: rgba(26, 44, 143, 0.28);
+  }
+
+  .dark .aura {
+    opacity: 0.32;
+  }
+
+  .dark .aura--primary {
+    background: rgba(89, 112, 255, 0.45);
+  }
+
+  .dark .aura--accent {
+    background: rgba(73, 93, 255, 0.35);
+  }
+
+  .dark .aura--bottom {
+    background: rgba(29, 42, 140, 0.35);
+  }
+}
+
+/* =========================
+   9) Keyframes (خارج layers لاستخدامها مع كلاسات أخرى)
+   ========================= */
+
+@keyframes eng-rotation {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes eng-floating {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* تقليل الحركة لمن يفضّل ذلك (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  .eng-card-content,
+  .eng-card-back::before,
+  .eng-card-circle,
+  .animate-slide-in-up,
+  .animate-slide-in-down,
+  .animate-fade-in,
+  .animate-pulse-glow {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }

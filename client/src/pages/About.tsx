@@ -118,7 +118,7 @@ export default function About() {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-3xl" />
                 <img
-                  src="/hero-building.jpg"
+                  src="/photoApp/hero-building.jpg"
                   alt="مبنى معماري عصري"
                   className="relative rounded-2xl shadow-2xl w-full h-auto object-cover"
                 />
