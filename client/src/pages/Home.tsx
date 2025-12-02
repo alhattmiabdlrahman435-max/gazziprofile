@@ -21,6 +21,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 
 const engineeringServices = [
   {
@@ -62,7 +63,8 @@ const engineeringServices = [
     title: "الدراسات الهندسية",
     description:
       "دراسات فنية وهندسية متخصصة تدعم اتخاذ القرار وتساعد على التخطيط الأمثل",
-    image: "/photoApp/image-engineering-objects-workplace-top-view-construction-concept-engineering-tools-vintage-tone-retro-filter-effect-soft-focus-selective-focus.jpg",
+    image:
+      "/photoApp/image-engineering-objects-workplace-top-view-construction-concept-engineering-tools-vintage-tone-retro-filter-effect-soft-focus-selective-focus.jpg",
     icon: <ClipboardList className="h-6 w-6 text-primary" />,
   },
   {
@@ -97,7 +99,8 @@ const engineeringServices = [
     title: "تصاميم السلامة",
     description:
       "تخطيط وتصميم أنظمة السلامة والحماية من الحريق بما يشمل مخارج الطوارئ وأنظمة الإنذار والإطفاء",
-    image: "/photoApp/portrait-man-practicing-his-profession-celebrate-international-labour-day.jpg",
+    image:
+      "/photoApp/portrait-man-practicing-his-profession-celebrate-international-labour-day.jpg",
     icon: <ShieldAlert className="h-6 w-6 text-primary" />,
   },
 ];
@@ -220,13 +223,15 @@ function HomeHero({ scrollY }: HomeHeroProps) {
                 مستدامة، من التخطيط وحتى التشغيل.
               </p>
               <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/80">
-                {heroHighlights.map((item) => (
+                {heroHighlights.map(item => (
                   <div
                     key={item.title}
                     className="rounded-full border border-white/20 bg-white/5 px-4 py-2 backdrop-blur-sm"
                   >
                     <div>{item.title}</div>
-                    <span className="text-xs text-white/60">{item.description}</span>
+                    <span className="text-xs text-white/60">
+                      {item.description}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -254,10 +259,14 @@ function HomeHero({ scrollY }: HomeHeroProps) {
                   { label: "مشروع منفذ", value: "50+" },
                   { label: "سنة خبرة", value: "15+" },
                   { label: "عميل راضي", value: "100+" },
-                ].map((stat) => (
+                ].map(stat => (
                   <div key={stat.label} className="text-center">
-                    <div className="text-3xl font-black text-primary">{stat.value}</div>
-                    <p className="text-xs font-semibold text-white/70">{stat.label}</p>
+                    <div className="text-3xl font-black text-primary">
+                      {stat.value}
+                    </div>
+                    <p className="text-xs font-semibold text-white/70">
+                      {stat.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -317,7 +326,7 @@ export default function Home() {
               subtitle="نستخدم أحدث البرمجيات لضمان جودة ودقة أعمالنا"
             />
             <div className="grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
-              {engineeringTools.map((tool) => (
+              {engineeringTools.map(tool => (
                 <div
                   key={tool.title}
                   className="flex flex-col items-center gap-3"
@@ -346,12 +355,13 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {engineeringServices.map((service, index) => (
-              <div
+              <Link
                 key={service.title}
                 className="eng-card-wrapper"
                 style={{
                   animation: `slideInUp 0.6s ease-out ${index * 0.08}s both`,
                 }}
+                href={`/engineering-services/${index}`}
               >
                 <div className="eng-card-content">
                   <div className="eng-card-back">
@@ -393,7 +403,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

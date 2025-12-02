@@ -11,6 +11,7 @@ import { Menu, X, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { AnimatePresence, motion } from "framer-motion";
+import { motion as mot } from "motion/react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +30,7 @@ export default function Header() {
   const toggleDarkMode = () => toggleTheme?.();
 
   return (
-    <header
+    <mot.header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
           ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
@@ -92,13 +93,15 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden items-center gap-8 lg:flex">
-          {NAV_MENU.map((item) => (
+          {NAV_MENU.map(item => (
             <Link
               key={item.href}
               href={item.href}
               className={(isActive: boolean) =>
                 `group relative font-bold transition-colors ${
-                  isActive ? "text-primary" : "text-foreground hover:text-primary"
+                  isActive
+                    ? "text-primary"
+                    : "text-foreground hover:text-primary"
                 }`
               }
             >
@@ -159,7 +162,7 @@ export default function Header() {
             id="mobile-menu"
           >
             <div className="container flex flex-col gap-3">
-              {NAV_MENU.map((item) => (
+              {NAV_MENU.map(item => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -186,6 +189,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </mot.header>
   );
 }

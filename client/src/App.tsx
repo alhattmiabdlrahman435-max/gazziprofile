@@ -12,19 +12,28 @@ import Portfolio from "./pages/Portfolio";
 import { AnimatePresence, motion } from "framer-motion";
 import SmoothScroll from "@/components/SmoothScroll";
 import RouteEffects from "@/components/RouteEffects";
+import EngineeringServices from "./pages/EngineeringServices";
+import ScrollToTop from "./components/ScrollToTop";
 
 function Router() {
   return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/about"} component={About} />
-      <Route path={"/services"} component={Services} />
-      <Route path={"/contact"} component={Contact} />
-      <Route path={"/portfolio"} component={Portfolio} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path={"/"} component={Home} />
+        <Route path={"/about"} component={About} />
+        <Route path={"/services"} component={Services} />
+        <Route path={"/contact"} component={Contact} />
+        <Route path={"/portfolio"} component={Portfolio} />
+        <Route
+          path={"/engineering-services/:id"}
+          component={EngineeringServices}
+        />
+        <Route path={"/404"} component={NotFound} />
+        {/* Final fallback route */}
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 
